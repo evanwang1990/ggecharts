@@ -1,0 +1,5 @@
+dependencies:
+  - name: echarts
+    version: 3.3.1
+    src: htmlwidgets/lib
+    script: echarts.min.js

@@ -1,6 +1,6 @@
 HTMLWidgets.widget({
 
-  name: 'ggecharts',
+  name: 'echarts',
 
   type: 'output',
 
@@ -694,41 +694,26 @@ HTMLWidgets.widget({
       });
     };
 
-    var setTheme = function(el) {
-      var theme = el.split("-", 1);
-      if (theme == "dark") {
-        dark_theme();
-      } else if (theme == "infographic") {
-        infographic_theme();
-      } else if (theme == "macarons") {
-        macarons_theme();
-      } else if (theme == "roma") {
-        roma_theme();
-      } else if (theme == "shine") {
-        shine_theme();
-      } else if (theme == "vintage") {
-        vintage_theme();
-      } else {
-        // default theme
-      }
-    };
+    dark_theme();
+    infographic_theme();
+    macarons_theme();
+    roma_theme();
+    shine_theme();
+    vintage_theme();
 
-    setTheme(el);
+    var theme = el.id.toString().split("-");
 
-    var echart = echarts.init(el);
+    var echart = echarts.init(el, theme[0]);
 
     return {
 
       renderValue: function(x) {
 
         echart.setOption(x, true);
-        //echart.registerTheme;
 
       },
 
       resize: function(width, height) {
-
-        // nothing...
 
       }
 
