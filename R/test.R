@@ -12,7 +12,8 @@ t <- e_bar(df2, seller, saleNum, weekDay) + {
 } +
   e_legend() +
   e_tooltip(enterable = T) +
-  e_toolbox()
+  e_toolbox() +
+  e_markPoint("averageX")
 
 
 

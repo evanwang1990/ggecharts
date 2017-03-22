@@ -5,9 +5,19 @@ e_markPoint <- function(tomark, symbol = c("pin", "circle", "rect", "roundRect",
                        each.color = FALSE) {
   if (!is.function(tomark)) {
     stopifnot(all(tomark %in% c("minX", "maxX", "averageX", "minY", "maxY", "averageY")))
+    m_data <- vector("list", length(tomark))
+    m_data <- Map(function(l, m) {
+      l <- list(
+        name = "",
+        type = substr(m, 1, nchar(m)-1),
+        valueIndex = ifelse(substring(m, nchar(m)) == "X", 0, 1)
+      )
+    }, m_data, tomark)
+  } else {
+    m_data <- tomark
   }
   markPoint <- markPoint.default
-  #tomark
+  markPoint$data <- m_data
   symbol <- match.arg(symbol, several.ok = FALSE)
   markPoint$symbol <- symbol
   markPoint$symbolSize <- symbol.size
@@ -18,8 +28,8 @@ e_markPoint <- function(tomark, symbol = c("pin", "circle", "rect", "roundRect",
     structure(
       markPoint,
       class = "echart",
-      element = "mark",
-      tomark = tomark
+      element = "markPoint",
+      isfunction = is.function(tomark)
     )
   )
 }
