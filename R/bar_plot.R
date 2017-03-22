@@ -56,7 +56,9 @@ e_bar <- function(data = NULL, x = NULL, y = NULL, color = NULL, stack = NULL) {
       yAxis = yAxis,
       series = series
     ),
-    class = c("chart")
+    class = c("chart"),
+    element = c("barplot"),
+    main = TRUE
   )
 
 }
@@ -72,18 +74,3 @@ series.bar.default <- list(
    barGap = "30%",
    data = list()
  )
-
-
-
-
-df2 <- data.frame(
-  saleNum=c(10,20,30,40,50,60,70,15,25,35,45,55,65,75,25,35,45,55,65,75,85),
-  seller=c(rep("Yellow",7), rep("Red",7), rep("White",7)),
-  weekDay = c(rep(c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"),3)),
-  stringsAsFactors =FALSE
-)
-t <- e_bar(df2, seller, saleNum, weekDay)
-class(t) <- NULL
-
-
-htmlwidgets::createWidget("echarts", t, package = "ggecharts", elementId = createElmemtID("shine"))
