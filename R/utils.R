@@ -56,3 +56,7 @@ updateList <- function(base, update) {
 cap <- function(s) {
   paste(toupper(substring(s, 1, 1)),tolower(substring(s, 2)), sep = "", collapse = "")
 }
+
+combineList <- function(x, y) {
+  c(list(x), list(y))
+}

@@ -1,4 +1,18 @@
+e_grid <- function(width, height, charts) {
+  stopifnot(is.integer(width), is.integer(height), width <= 6, height <= 6, inherits(charts, "chart"))
+  charts$grid <- list(
+    width = width,
+    height = height
+  )
 
+  elements <- c("title", "legend", "grid", "xAxis", "yAxis", ) #TODO: radar and so on has no xAxis
+  invisible(
+    structure(
+      charts,
+      class = c("chartGrid", class(charts))
+    )
+  )
+}
 
 grid_param <- list(
   list(width = 3, height = 3),

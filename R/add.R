@@ -36,3 +36,8 @@ add_markPoint <- function(s, e2) {
   }
   s
 }
+
+
+add.chartGrid <- function(g1, g2) {
+  gird
+}
