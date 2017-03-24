@@ -6,17 +6,24 @@ df2 <- data.frame(
 )
 
 df2$weekDay <- factor(df2$weekDay, levels = c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"), ordered = T)
-t <- e_bar(df2, seller, saleNum, weekDay) + {
-  parent.frame()
-  e_title("This is a test", "just a test @2017-03-22", position = c("top", "center"))
-} +
+t <- e_bar(df2, seller, saleNum, weekDay) +
+  e_title("This is a test", "just a test @2017-03-22", position = c("top", "center")) +
   e_legend() +
   e_tooltip(enterable = T) +
   e_toolbox() +
   e_markPoint("averageX")
 
+t <- e_grid(width = 4L, height = 4L, {
+  e_bar(df2, seller, saleNum, weekDay) +
+    e_title("This is a test", "just a test @2017-03-22", position = c("top", "center")) +
+    e_legend() +
+    e_tooltip(enterable = T) +
+    e_toolbox() +
+    e_markPoint("averageX")
+})
 
 
-htmlwidgets::createWidget("echarts", t, package = "ggecharts", elementId = createElmemtID("shine"))
+
+th <- htmlwidgets::createWidget("echarts", t, package = "ggecharts", elementId = createElmemtID("shine"))
 
 

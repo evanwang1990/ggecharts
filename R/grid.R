@@ -1,11 +1,8 @@
 e_grid <- function(width, height, charts) {
   stopifnot(is.integer(width), is.integer(height), width <= 6, height <= 6, inherits(charts, "chart"))
-  charts$grid <- list(
-    width = width,
-    height = height
-  )
+  charts$grid <-
+  charts <- complete_charts(charts)
 
-  elements <- c("title", "legend", "grid", "xAxis", "yAxis", ) #TODO: radar and so on has no xAxis
   invisible(
     structure(
       charts,
@@ -14,10 +11,33 @@ e_grid <- function(width, height, charts) {
   )
 }
 
+
+grid.default <- structure(
+  list(
+    tmp = list(
+      width = width,
+      height = height
+    )
+  ),
+  class = "chart",
+  element = "grid"
+)
+
+complete_charts <- function(charts) {
+  elements <- c("title", "legend", "xAxis", "yAxis", "tooltip", "series") #TODO: radar and so on has no xAxis
+  to_add_elements <- setdiff(elements, names(charts))
+  for (ele in to_add_elements) {
+    if (ele == "title") {
+      charts <- add(charts, e_title())
+    } else if (ele == "tooltip") {
+      charts <- add(charts, e_tooltip())
+    }
+  }
+  invisible(charts)
+}
+
 grid_param <- list(
-  list(width = 3, height = 3),
-  list(width = 2, height = 6),
-  list(width = 2, height = 1))
+  list(width = 4, height = 4))
 
 echart_layout <- function(grid_params) {
   unit_width <- unit_height <- 0.13

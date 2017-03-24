@@ -10,10 +10,12 @@ e_title <- function(title = "", subtitle = "", position = c("auto", "auto")) {
   if (title_$top != "auto")
     title_$textBaseline <- title_$top
 
-  structure(
-    title_,
-    class = c("echart"),
-    element = "title"
+  invisible(
+    structure(
+      title_,
+      class = "echart",
+      element = "title"
+    )
   )
 }
 

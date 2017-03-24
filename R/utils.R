@@ -57,6 +57,14 @@ cap <- function(s) {
   paste(toupper(substring(s, 1, 1)),tolower(substring(s, 2)), sep = "", collapse = "")
 }
 
-combineList <- function(x, y) {
-  c(list(x), list(y))
+combine <- function(x, y) {
+  if (is.list(x)) {
+    if (is.null(class(x))){
+      c(x, list(y))
+    } else {
+      c(list(x), list(y))
+    }
+  } else {
+    c(x, y)
+  }
 }

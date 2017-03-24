@@ -39,5 +39,16 @@ add_markPoint <- function(s, e2) {
 
 
 add.chartGrid <- function(g1, g2) {
-  gird
+  ele_g1 <- names(g1)
+  ele_g2 <- names(g2)
+  g1 <- c(g1, g2[setdiff(ele_g2, ele_g1)])
+  for (ele_ in intersect(ele_g2, ele_g1)) {
+    g1[[ele_]] <- combine(g1[[ele_]], g2[[ele_]])
+  }
+  invisible(
+    structure(
+      g1
+      class = union("chartGrids", class(g1))
+    )
+  )
 }

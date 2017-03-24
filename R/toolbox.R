@@ -1,3 +1,4 @@
+# 最多一个
 e_toolbox <- function(show = TRUE, position = c("top", "right"), box = c("saveAsImage", "restore", "dataView", "dataZoom", "magicType"), magicType = c("line", "bar", "stack", 'tiled')) {
   toolbox_ <- toolbox.default
   if (!show) {
